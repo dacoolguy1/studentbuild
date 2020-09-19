@@ -1,0 +1,158 @@
+Sequence Mutation:
+Lists are mutable,string and tuples arent
+The delete operator are used to delete items in a list based on the position
+The is operator: We can test whether two names refer to the same object using the is operator.
+In aliasing the variable attached to the main variable is dependent of it
+Cloning: Using the slice operator the variables are independents of each other
+
+Methods on list and string:
+list_name.append()
+The append method adds the value to the lhs
+list.insert(pos,val)
+list.count(val): count the no of occurances of a value in the lists
+list.index(): returns the postion of a value
+list.reverse(): Chenge the order of the list from -1 to 0
+list.sort(): sort the items in ascending order
+list.remove() removed the firt
+
+It is important to remember that methods like append, sort, and reverse all return None, they change the list and dont produce a new list
+string.upper()-upperecase
+string.lower()-lowercase
+string.count(): counts the no of appearance
+string.index():returns the left most index of the value
+string.strip(): Returns a string with the leading and trailing whitespace removed
+string.replace(old,new) Replaces all occurrences of old substring with new
+string.format():The string for the format method has a special form, with braces embedded. Such a string is called a format string. Places where braces are embedded are replaced by the value of an expression taken from the parameter list for the format method.
+
+Write code to add ‘horseback riding’ to the third position (i.e., right before volleyball) in the list sports.
+sports = ['cricket', 'football', 'volleyball', 'baseball', 'softball', 'track and field', 'curling', 'ping pong', 'hockey']
+
+
+sports.insert(2, 'horseback riding')
+
+Write code to take ‘London’ out of the list trav_dest.
+trav_dest = ['Beirut', 'Milan', 'Pittsburgh', 'Buenos Aires', 'Nairobi', 'Kathmandu', 'Osaka', 'London', 'Melbourne']
+
+trav_dest.remove('London')
+Write code to add ‘Guadalajara’ to the end of the list trav_dest using a list method.
+trav_dest = ['Beirut', 'Milan', 'Pittsburgh', 'Buenos Aires', 'Nairobi', 'Kathmandu', 'Osaka', 'Melbourne']
+
+trav_dest.append('Guadalajara')
+
+Write code to rearrange the strings in the list winners so that they are in alphabetical order from A to Z.
+winners = ['Kazuo Ishiguro', 'Rainer Weiss', 'Youyou Tu', 'Malala Yousafzai', 'Alice Munro', 'Alvin E. Roth']
+
+winners.sort()
+
+Write code to switch the order of the winners list so that it is now Z to A. Assign this list to the variable z_winners.
+winners = ['Alice Munro', 'Alvin E. Roth', 'Kazuo Ishiguro', 'Malala Yousafzai', 'Rainer Weiss', 'Youyou Tu']
+winners.reverse()
+z_winners=winners
+
+For each word in the list verbs, add an -ing ending. Save this new list in a new list, ing.
+verbs = ["kayak", "cry", "walk", "eat", "drink", "fly"]
+ing=[]
+yo='ing'
+for word in range(len(verbs)):
+    ing.append(verbs[word]+yo)
+    
+print(ing)
+
+Given the list of numbers, numbs, create a new list of those same numbers increased by 5. Save this new list to the variable newlist.
+
+numbs = [5, 10, 15, 20, 25]
+newlist=[]
+for i in range(len(numbs)):
+    
+    newlist.append(numbs[i]+5)
+For each number in lst_nums, multiply that number by 2 and append it to a new list called larger_nums.lst_nums = [4, 29, 5.3, 10, 2, 1817, 1967, 9, 31.32]
+
+larger_nums = []
+for item in lst_nums:
+    larger_nums.append(item*2)
+Currently there is a string called str1. Write code to create a list called chars which should contain the characters from str1. Each character in str1 should be its own element in the list chars.
+str1 = "I love python"
+# HINT: what's the accumulator? That should go here.
+
+chars = []
+for inn in str1:
+    chars.append(inn)
+
+The way of the programmer:
+Always use a reference diagram when you are confused
+
+accumulator pattenr strategirs:
+How many,how frequently: count accumulation
+total - sum accumulation
+a list of : list //
+concantenante : string accumulation
+
+
+What sequence will you iterate through as you accumulate a result? It could be a range of numbers, the letters in a string, or some existing list that you have just as a list of names.
+
+What type of value will you accumulate? If
+
+Choosing Good Accumulator and Iterator Variable Names:
+Use a sigular noun for the iteration variable name
+It should describe what one item in the original sequence, not what one item in the final result will be
+
+For each character in the string saved in ael, append that character to a list that should be saved in a variable app.
+
+ael = "python!"
+lst = []
+for i in ael:
+    lst.append(i)
+app = lst
+
+For each string in wrds, add ‘ed’ to the end of the word (to make the word past tense). Save these past tense words to a list called past_wrds.
+wrds = ["end", 'work', "play", "start", "walk", "look", "open", "rain", "learn", "clean"]
+lst = []
+for i in wrds:
+    i = i + "ed"
+    lst.append(i)
+past_wrds = lst
+
+scores = "67 80 90 78 93 20 79 89 96 97 92 88 79 68 58 90 98 100 79 74 83 88 80 86 85 70 90 100"
+a_scores = 0
+for score in scores.split(' '):
+    score = int(score)
+    if score>=90:
+        a_scores +=1
+print(a_scores)
+
+Write code that uses the string stored in org and creates an acronym which is assigned to the variable acro. Only the first letter of each word should be used, each letter in the acronym should be a capital letter, and there should be nothing to separate the letters of the acronym. Words that should not be included in the acronym are stored in the list stopwords. For example, if org was assigned the string “hello to world” then the resulting acronym should be “HW”.
+stopwords = ['to', 'a', 'for', 'by', 'an', 'am', 'the', 'so', 'it', 'and', "The"]
+org = "The organization for health, safety, and education"
+
+acro=""
+orglist=org.split()
+
+for first in orglist:
+    if first not in stopwords:
+        acro=acro+first[0].upper()
+Write code that uses the string stored in sent and creates an acronym which is assigned to the variable acro. The first two letters of each word should be used, each letter in the acronym should be a capital letter, and each element of the acronym should be separated by a “. ” (dot and space). Words that should not be included in the acronym are stored in the list stopwords. For example, if sent was assigned the string “height and ewok wonder” then the resulting acronym should be “HE. EW. WO”.
+stopwords = ['to', 'a', 'for', 'by', 'an', 'am', 'the', 'so', 'it', 'and', 'The']
+sent = "The water earth and air are vital"
+
+acro = ""
+sent_words = sent.split()
+for word in sent_words:
+    if word not in stopwords:
+        acro = acro + word[:2]
+        if word != sent_words[-1]:
+            
+            acro += ". "
+acro = acro.upper()
+print(acro)
+
+A palindrome is a phrase that, if reversed, would read the exact same. Write code that checks if p_phrase is a palindrome by reversing it and then checking if the reversed version is equal to the original. Assign the reversed version of p_phrase to the variable r_phrase so that we can check your work.
+
+p_phrase = "was it a car or a cat I saw"
+r_phrase = p_phrase[::-1]
+
+Provided is a list of data about a store’s inventory where each item in the list represents the name of an item, how much is in stock, and how much it costs. Print out each item in the list with the same formatting, using the .format method (not string concatenation). For example, the first print statment should read The store has 12 shoes, each for 29.99 USD.
+inventory = ["shoes, 12, 29.99", "shirts, 20, 9.99", "sweatpants, 25, 15.00", "scarves, 13, 7.75"]
+
+for items in inventory:
+    item_description, number, cost = items.split(", ")
+    print("The store has {} {}, each for {} USD.".format(number, item_description, cost))
