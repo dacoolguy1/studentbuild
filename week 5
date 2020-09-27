@@ -1,0 +1,292 @@
+import csv
+%precision 2
+
+with open('mpg.csv') as csvfile:
+    mpg=list(csv.DictReader(csvfile)) ##saving the csvfile as in the variable mpg
+    
+mpg[:3]
+
+len(mpg)
+
+mpg[0].keys() #Using the keymethod to get column names
+
+#the average cty fuel economy across all cars
+sum(float(d['cty']) for d in mpg) / len(mpg)
+
+#to find the average hwy fuel economy across all cars.
+sum(float(d['hwy']) for d in mpg) / len(mpg)
+
+cylinders = set(d['cyl'] for d in mpg) ## creating a set of the values of the cylinder
+# will give us a unique levels for no of cylinder
+cylinders
+
+CtyMpgByCyl = [] #an empty list to store our calculations
+
+for c in cylinders: # iterate over all the cylinder levels
+    summpg = 0
+    cyltypecount = 0
+    for d in mpg: # iterate over all dictionaries
+        if d['cyl'] == c: # if the cylinder level type matches,
+            summpg += float(d['cty']) # add the cty mpg
+            cyltypecount += 1 # increment the count
+    CtyMpgByCyl.append((c, summpg / cyltypecount)) # append the tuple ('cylinder', 'avg mpg')
+
+CtyMpgByCyl.sort(key=lambda x: x[0])
+CtyMpgByCyl
+
+vehicleclass = set(d['class'] for d in mpg) # what are the class types
+vehicleclass
+
+HwyMpgByClass = []
+
+for t in vehicleclass: # iterate over all the vehicle classes
+    summpg = 0
+    vclasscount = 0
+    for d in mpg: # iterate over all dictionaries
+        if d['class'] == t: # if the cylinder amount type matches,
+            summpg += float(d['hwy']) # add the hwy mpg
+            vclasscount += 1 # increment the count
+    HwyMpgByClass.append((t, summpg / vclasscount)) # append the tuple ('class', 'avg mpg')
+
+HwyMpgByClass.sort(key=lambda x: x[1])
+HwyMpgByClass
+
+store1 = [10.00, 11.00, 12.34, 2.34]
+store2 = [9.00, 11.10, 12.34, 2.01]
+cheapest = map(min, store1, store2)
+cheapest
+
+import datetime as dt #Importing the datetime module
+import time as tm
+
+
+tm.time()# To get the current time
+dt.datetime.now()
+
+# lets create a time_stamp
+dt_now=dt.datetime.fromtimestamp(tm.time()) #timestamp() function return the time expressed as the 
+#number of seconds that have passed since January 1, 1970
+dt_now
+
+dt_now.year,dt_now.month,dt_now.day,dt_now.hour,dt_now.minute,dt_now.second # the dt_now object has attributes like year,month,day etc
+
+
+# we can also do simple maths using time deltas
+
+delta = dt.timedelta(days=100)
+delta
+
+today = dt.date.today()
+
+today-delta
+
+today> today-delta
+
+my_function = lambda a, b, c : a + b
+my_function(1, 2, 3)
+
+my_list = []
+for number in range(0, 1000):
+    if number % 2 == 0:
+        my_list.append(number)
+my_list
+
+# using list comprehension to do it
+my_list = [number for number in range(0,1000) if number % 2 == 0]
+my_list
+
+import numpy as np
+import math
+
+a = np.array([1, 2, 3])
+print(a)
+# printing the number of dimensions
+print(a.ndim)
+b = np.array([[1,2,3],[4,5,6]]) ## A list in a lists create a multidimensional array
+b
+b.shape # To get the length of each dimension
+b.dtype # Tp get the type of items
+
+farenheit = np.array([0,-10,-5,-15,0])
+
+# And the formula for conversion is ((°F − 32) × 5/9 = °C)
+celcius = (farenheit - 31) * (5/9)
+celcius
+
+A = np.array([[1,1],[0,1]])
+B = np.array([[2,0],[3,4]])
+print(A*B)
+print(A@B)
+
+array1 = np.array([[1, 2, 3], [4, 5, 6]])
+print(array1.dtype)
+
+array2 = np.array([[7.1, 8.2, 9.1], [10.4, 11.2, 12.3]])
+print(array2.dtype)
+
+array3=array1+array2
+print(array3)
+print(array3.dtype)
+
+print(array3.sum()) #sum the arrays
+print(array3.max()) #find the maximum values in each of the array
+print(array3.min()) #finds  the minimum value in each of the array
+print(array3.mean()) #find the means of thea arrays
+
+b = np.arange(1,16,1).reshape(3,5)
+print(b)
+
+from PIL import Image
+from IPython.display import display
+im = Image.open('chris.tiff')
+display(im)
+
+array=np.array(im) ## converting image to numpy
+print(array.shape)
+array
+
+mask=np.full(array.shape,255) ## creating a mask of 255 units
+mask
+
+modified_array=array-mask
+modified_array=modified_array*-1 # converting neative values to positive values
+modified_array=modified_array.astype(np.uint8) #restting the datatype AS THE correctype
+modified_array
+
+# imaging library to convert the numpy array into an object jupyter can render
+display(Image.fromarray(modified_array))
+
+
+reshaped=np.reshape(modified_array,(100,400))
+print(reshaped.shape)
+display(Image.fromarray(reshaped))
+
+a = np.array([1,3,5,7])
+a[2]
+
+a = np.array([[1,2], [3, 4], [5, 6]])
+a
+a[1,1]
+np.array([a[0, 0], a[1, 1], a[2, 1]])
+print(a[[0, 1, 2], [0, 1, 1]])
+
+print(a >5)
+print(a[a>5])
+
+a = np.array([0,1,2,3,4,5])
+print(a[:3])
+print(a[2:4])
+
+a = np.array([[1,2,3,4], [5,6,7,8], [9,10,11,12]])
+a
+a[:2]
+a[:2, 1:3]
+
+
+sub_array = a[:2, 1:3]
+print("sub array index [0,0] value before change:", sub_array[0,0])
+sub_array[0,0] = 50
+print("sub array index [0,0] value after change:", sub_array[0,0])
+print("original array index [0,1] value after change:", a[0,1])
+
+
+wines = np.genfromtxt("winequality-red.csv", delimiter=";", skip_header=1)
+wines
+
+print("one integer 0 for slicing: ", wines[:, 0])
+print("0 to 1 for slicing: \n", wines[:, 0:1])
+
+
+wines[:, 0:3]
+wines[:, [0,2,4]]
+
+wines[:,-1].mean()
+
+graduate_admission = np.genfromtxt('Admission_Predict.csv', dtype=None, delimiter=',', skip_header=1,
+                                   names=('Serial No','GRE Score', 'TOEFL Score', 'University Rating', 'SOP',
+                                          'LOR','CGPA','Research', 'Chance of Admit'))
+graduate_admission
+
+graduate_admission.shape
+graduate_admission['CGPA'][0:5]
+graduate_admission['CGPA'] = graduate_admission['CGPA'] /10 *4
+graduate_admission['CGPA'][0:20]
+
+len(graduate_admission[graduate_admission['Research'] == 1])
+
+print(graduate_admission[graduate_admission['Chance_of_Admit'] > 0.8]['GRE_Score'].mean())
+print(graduate_admission[graduate_admission['Chance_of_Admit'] < 0.4]['GRE_Score'].mean())
+
+
+graduate_admission[graduate_admission['Chance_of_Admit'] > 0.8]
+
+print(graduate_admission[graduate_admission['Chance_of_Admit'] > 0.8]['CGPA'].mean())
+print(graduate_admission[graduate_admission['Chance_of_Admit'] < 0.4]['CGPA'].mean())
+
+import re #importing the re module
+text = "This is a good day."
+if re.search("good", text): # the first parameter here is the pattern
+    print("Wonderful!")
+else:
+    print("Alas :(")
+
+text = "Amy works diligently. Amy gets good grades. Our student Amy is succesful."
+re.split("Amy", text)
+
+re.findall("Amy", text)# find all ocuurrence of the string amy
+
+text = "Amy works diligently. Amy gets good grades. Our student Amy is succesful."
+re.search("^Amy",text)
+
+grades="ACAAAABCBCBAA"
+re.findall("B",grades)
+
+
+re.findall("[AB]",grades)
+
+re.findall("[A][B-C]",grades)
+
+re.findall("AB|AC",grades)
+
+re.findall("[^A]",grades)
+
+re.findall("^[^A]",grades)
+
+# Quantifiers are the number of times you want a pattern to be matched in order to match. The most basic
+# quantifier is expressed as e{m,n}, where e is the expression or character we are matching, m is the minimum
+# number of times you want it to matched, and n is the maximum number of times the item could be matched.
+
+# Let's use these grades as an example. How many times has this student been on a back-to-back A's streak?
+re.findall("A{2,10}",grades)
+
+
+re.findall("A{2, 2}",grades)
+
+with open("ferpa.txt","r") as file:
+    
+    wiki=file.read()
+
+wiki
+
+re.findall("[\w]{1,100}\[edit\]",wiki)
+
+re.findall("[\w]*\[edit\]",wiki)
+
+re.findall("[\w ]*\[edit\]",wiki)
+
+for title in re.findall("[\w ]*\[edit\]",wiki):
+
+    print(re.split("[\[]",title)[0])
+
+#Groups
+
+re.findall("([\w ]*)(\[edit\])",wiki)
+
+#we want a list of Match objects
+for item in re.finditer("([\w ]*)(\[edit\])",wiki):
+    print(item.groups())
+    
+
+for item in re.finditer("([\w ]*)(\[edit\])",wiki):
+    print(item.group(1))
+
